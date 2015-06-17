@@ -1,14 +1,14 @@
-var Book = require("./book.js");
+var Book = require('./book.js');
 
 
 // Create Shelf constructor
 
-var Shelf = function (genre) {
+var Shelf = function(genre) {
   this.genre = genre;
   this.addBook = function(title, author) {
     // Handle if a pre-existing Book object is passed in as
     // an argument
-    if (typeof(title) === "object") {
+    if (typeof(title) === 'object') {
       var bookObject = title;
       var bookTitle = bookObject.title;
       var bookAuthor = bookObject.author;
@@ -16,17 +16,17 @@ var Shelf = function (genre) {
     } else {
       this[title] = new Book(title, author);
     }
-  }
+  };
   this.removeBook = function(title, author) {
     // Handle if a pre-existing Book object is passed in as
     // an argument
-    if (typeof(title) === "object") {
+    if (typeof(title) === 'object') {
       var bookTitle = title.title;
       delete this[bookTitle];
     } else {
       delete this[title];
     }
-  }
-}
+  };
+};
 
 module.exports = Shelf;
