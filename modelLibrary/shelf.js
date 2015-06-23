@@ -1,33 +1,54 @@
-var Book = require('./book.js');
-
+//var Book = require('./book.js');
 
 // Create Shelf constructor
-
 var Shelf = function(genre) {
   this.genre = genre;
   this.books = [];
   this.addBook = function(title, author) {
-    // Handle if a pre-existing Book object is passed in as
-    // an argument
     if (typeof(title) === 'object') {
+      // Handle if Book object is passed in as an argument
       var bookObject = title;
-      var bookTitle = bookObject.title;
-      var bookAuthor = bookObject.author;
-      this.books.push(new Book(bookTitle, bookAuthor));
+      this.books.push(bookObject);
     } else {
+      // Add book by title and author
       this.books.push(new Book(title, author));
     }
   };
   this.removeBook = function(title, author) {
-    // Handle if a pre-existing Book object is passed in as
-    // an argument
     if (typeof(title) === 'object') {
-      var bookTitle = title.title;
-      delete this[bookTitle];
+      // Handle if Book object is passed in as an argument
+      var bookObject = title;
+      var bookTitle = bookObject.title;
+      var bookAuthor = bookObject.author;
+      removeBook(this.books, bookTitle, bookAuthor);
     } else {
-      delete this[title];
+      // Remove book by title and author
+      removeBook(this.books, title, author);
     }
   };
 };
 
-module.exports = Shelf;
+function removeBook(bookArray, title, author) {
+  // Handle different letter cases
+  var title = title.toLowerCase();
+  var author = author.toLowerCase();
+  // Map the books array and return the title of each book (lowercased),
+  // then return the index of the matched title
+  var titleIndex = bookArray.map(function(currentValue) {
+    return currentValue.title.toLowerCase();
+  }).indexOf(title);
+  // Map the books array and return the author of each book (lowercased),
+  // then return the index of the author
+  var authorIndex = bookArray.map(function(currentValue) {
+    return currentValue.author.toLowerCase();
+  }).indexOf(author);
+  // Check that the title and author are correct
+  if (titleIndex === authorIndex) {
+    // Removed the matched book by its index
+    bookArray.splice(titleIndex, 1);
+  } else {
+    console.log('Check that the title and author are correct');
+  }
+}
+
+//module.exports = Shelf;
