@@ -5,6 +5,7 @@ var Book = require('./book.js');
 
 var Shelf = function(genre) {
   this.genre = genre;
+  this.books = [];
   this.addBook = function(title, author) {
     // Handle if a pre-existing Book object is passed in as
     // an argument
@@ -12,9 +13,9 @@ var Shelf = function(genre) {
       var bookObject = title;
       var bookTitle = bookObject.title;
       var bookAuthor = bookObject.author;
-      this[bookTitle] = new Book(bookTitle, bookAuthor);
+      this.books.push(new Book(bookTitle, bookAuthor));
     } else {
-      this[title] = new Book(title, author);
+      this.books.push(new Book(title, author));
     }
   };
   this.removeBook = function(title, author) {

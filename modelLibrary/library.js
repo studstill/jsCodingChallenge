@@ -5,14 +5,15 @@ var Shelf = require('./shelf.js');
 
 var Library = function(name) {
   this.libraryName = name;
+  this.shelves = [];
   this.addShelf = function(genre) {
     // Handle if a pre-existing Shelf object is passed in as
     // an argument
     if (typeof(genre) === 'object') {
       var shelfGenreName = genre.genre;
-      this[shelfGenreName] = new Shelf(shelfGenreName);
+      this.shelves.push(new Shelf(shelfGenreName));
     } else {
-      this[genre] = new Shelf(genre);
+      this.shelves.push(new Shelf(genre));
     }
   };
   this.removeShelf = function(genre) {
@@ -27,13 +28,13 @@ var Library = function(name) {
   };
 };
 
-/****************************
-  Test Code
-******************************
+// ***************************
+//   Test Code
+// ******************************
 
 var greenLake = new Library('Green Lake Library');
 greenLake.addShelf('Biography');
-greenLake.Biography.addBook('Huck Finn', 'Mark Twain');
+//greenLake.shelves[genre = 'Biography'].addBook('Huck Finn', 'Mark Twain');
 console.log(greenLake);
 
-*/
+
