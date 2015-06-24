@@ -22,31 +22,31 @@ var people = [
                 {
                 name: 'Zaphod',
                 occupation: 'President of the Galaxy'
-                }
+                },
               ];
 
-function getProgrammers(people) {
-  var programmers = [];
-  people.forEach(function(current) {
-    if (current.occupation === 'programmer') {
-      programmers.push(current);
-    }
+function printAverageAwesomeIndex(people) {
+  // Get awesome index of programmers
+    var awesomeIndexArray = [];
+    people.forEach(function(current) {
+      if (current.occupation === 'programmer') {
+        awesomeIndexArray.push(current.awesomeIndex);
+      }
+    });
+  // Find sum of the awesomeIndex of all programmers
+  var sumAwesomeIndex = awesomeIndexArray.reduce(function(previous, current) {
+    return previous + current;
   });
-  return programmers;
+  // Calculate average awesomeIndex
+  var numProgrammers = awesomeIndexArray.length;
+  var averageAwesomeIndex = sumAwesomeIndex / numProgrammers;
+  // Update an html tag with id="awesome-index"
+  var indexDiv = document.getElementById('awesome-index');
+  document.write('The average awesome index of all programmers is ' + averageAwesomeIndex);
 }
 
-function getAverageAwesomeIndex(programmers) {
-  var sumAwesomeIndex = programmers.reduce(function(previous, current) {
-    return previous.awesomeIndex + current.awesomeIndex;
-  });
+// execute function
+printAverageAwesomeIndex(people);
 
-  var numProgrammers = programmers.length;
-  return sumAwesomeIndex / numProgrammers;
-}
-
-var programmers = getProgrammers(people);
-var averageAwesomeIndex = getAverageAwesomeIndex(programmers);
-var indexDiv = document.getElementById('awesome-index');
-document.write('The average awesome index of all programmers is ' + averageAwesomeIndex);
 
 
