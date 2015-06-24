@@ -1,8 +1,7 @@
-
 // Create Book constructor
 var Book = function(title, author) {
   this.title = title;
   this.author = author;
 };
 
-module.exports = Book;
+//module.exports = Book;
