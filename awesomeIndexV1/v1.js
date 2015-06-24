@@ -42,7 +42,7 @@ function printAverageAwesomeIndex(people) {
   var averageAwesomeIndex = sumAwesomeIndex / numProgrammers;
   // Update an html tag with id="awesome-index"
   var indexDiv = document.getElementById('awesome-index');
-  document.write('The average awesome index of all programmers is ' + averageAwesomeIndex);
+  indexDiv.innerHTML = 'The average awesome index of all programmers is ' + averageAwesomeIndex;
 }
 
 // execute function
