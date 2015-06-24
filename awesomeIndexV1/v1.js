@@ -26,29 +26,29 @@ var people = [
               ];
 
 function getProgrammers(people) {
-    var programmers = [];
-    for (var i = 0; i < people.length; i++) {
-        if (people[i].occupation === "programmer") {
-            programmers.push(people[i]);
-        }
+  var programmers = [];
+  people.forEach(function(current) {
+    if (current.occupation === 'programmer') {
+      programmers.push(current);
     }
-    return programmers;
-};
+  });
+  return programmers;
+}
+
+function getAverageAwesomeIndex(programmers) {
+  var sumAwesomeIndex = programmers.reduce(function(previous, current) {
+    return previous.awesomeIndex + current.awesomeIndex;
+  });
+
+  var numProgrammers = programmers.length;
+  return sumAwesomeIndex / numProgrammers;
+}
 
 var programmers = getProgrammers(people);
 
- function getAverageAwesomeIndex (programmers) {
-    var sumAwesomeIndex = 0
-    for (var i = 0; i < programmers.length; i++) {
-        sumAwesomeIndex += programmers[i].awesomeIndex;
-    }
-    var numProgrammers = programmers.length;
-    return sumAwesomeIndex / numProgrammers;
-}
-
 var averageAwesomeIndex = getAverageAwesomeIndex(programmers);
 
-var indexDiv = document.getElementById("awesome-index");
-document.write("The average awesome index of all programmers is " + averageAwesomeIndex);
+var indexDiv = document.getElementById('awesome-index');
+document.write('The average awesome index of all programmers is ' + averageAwesomeIndex);
 
 
