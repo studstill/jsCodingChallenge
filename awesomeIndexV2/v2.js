@@ -22,14 +22,19 @@ var people = [
                 {
                 name: 'Zaphod',
                 occupation: 'President of the Galaxy'
-                }
+                },
               ];
 
-var programmers = _.filter(people, "occupation", "programmer");
+function printAverageAwesomeIndex(people) {
+  var programmers = _.filter(people, 'occupation', 'programmer');
+  var sumAwesomeIndex = _.reduce(programmers, function(total, n) {
+    return total + n.awesomeIndex;
+  }, 0);
+  var averageAwesomeIndex = sumAwesomeIndex / programmers.length;
+  var message = 'The average awesome index of all programmers is ' +
+                averageAwesomeIndex + '.';
+  $('#awesome-index').text(message);
+}
 
-var sumAwesomeIndex = _.reduce(programmers, function(total, n) {
-  return total + n.awesomeIndex;
-}, 0);
-var averageAwesomeIndex = sumAwesomeIndex / programmers.length;
+printAverageAwesomeIndex(people);
 
-$("#awesome-index").html("The average awesome index of all programmers is " + averageAwesomeIndex + ".");
