@@ -1,4 +1,4 @@
-//var Book = require('./book.js');
+var Book = require('./book.js');
 
 // Create Shelf constructor
 var Shelf = function(genre) {
@@ -51,4 +51,4 @@ function removeBook(bookArray, title, author) {
   }
 }
 
-//module.exports = Shelf;
+module.exports = Shelf;

@@ -4,4 +4,4 @@ var Book = function(title, author) {
   this.author = author;
 };
 
-//module.exports = Book;
+module.exports = Book;
