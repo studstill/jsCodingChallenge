@@ -45,9 +45,7 @@ function getAverageAwesomeIndex(programmers) {
 }
 
 var programmers = getProgrammers(people);
-
 var averageAwesomeIndex = getAverageAwesomeIndex(programmers);
-
 var indexDiv = document.getElementById('awesome-index');
 document.write('The average awesome index of all programmers is ' + averageAwesomeIndex);
 
