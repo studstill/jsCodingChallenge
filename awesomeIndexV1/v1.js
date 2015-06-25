@@ -29,7 +29,7 @@ function printAverageAwesomeIndex(people) {
   // Get awesome index of programmers
     var awesomeIndexArray = [];
     people.forEach(function(current) {
-      if (current.occupation === 'programmer') {
+      if (current.occupation === 'programmer' && current.awesomeIndex) {
         awesomeIndexArray.push(current.awesomeIndex);
       }
     });
