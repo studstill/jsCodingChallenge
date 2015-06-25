@@ -47,8 +47,8 @@ var fictionShelf = new Shelf('Fiction');
 var huckFinn = new Book('Huck Finn', 'Mark Twain');
 console.log(huckFinn);
 fictionShelf.addBook(huckFinn);
-greenLake.addShelf(fictionShelf);
 console.log(fictionShelf);
+greenLake.addShelf(fictionShelf);
 greenLake.removeShelf('bIOGRAPHY');
 console.log(greenLake);
 
