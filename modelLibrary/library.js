@@ -1,5 +1,5 @@
-var Book = require('./book.js');
-var Shelf = require('./shelf.js');
+// var Book = require('./book.js');
+// var Shelf = require('./shelf.js');
 
 // Create Library constructer
 var Library = function(name) {
