@@ -13,25 +13,28 @@ var fs = require('fs');
 var port = process.env.PORT || 3000;
 var server = http.createServer();
 
+
 server.listen(port);
 console.log('Server running on port ' + port);
 
 server.on('request', requestHandler);
 
 function requestHandler(request, response) {
-  if (request.url === '/') {
+  var statusCode = 200;
+  if (request.url === '/' || request.url === '/index.html') {
     fs.readFile('./index.html', function(error, data) {
-    if (error) {
-      response.write('There was an error accessing index.html - ' + error);
-    } else {
-      response.writeHead(200, {'Content-type': 'text/html'});
-      response.write(data);
-    }
-    response.end();
+      writeResponse(request, response, statusCode, data);
     });
   } else {
-  response.writeHead(404, {'Content-Type': 'text/html'});
-  response.end('<h1>Sorry, the page you are looking for cannot be found.</h1>');
+    statusCode = 404;
+    fs.readFile('./404.html', function(error, data) {
+      writeResponse(request, response, statusCode, data);
+    });
   }
 }
 
+function writeResponse(request, response, statusCode, file) {
+  response.writeHead(statusCode, {'Content-Type': 'text/html'});
+  response.write(file);
+  response.end();
+}
