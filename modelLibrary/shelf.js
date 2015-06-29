@@ -5,30 +5,24 @@ var Shelf = function(genre) {
   this.genre = genre;
   this.books = [];
   this.addBook = function(title, author) {
-    if (typeof(title) === 'object') {
+    if (typeof(title) != 'object') {
       // Handle if Book object is passed in as an argument
-      var bookObject = title;
-      this.books.push(bookObject);
-    } else {
-      // Add book by title and author
-      this.books.push(new Book(title, author));
+      title = new Book(title, author);
     }
+    this.books.push(title);
   };
   this.removeBook = function(title, author) {
     if (typeof(title) === 'object') {
       // Handle if Book object is passed in as an argument
-      var bookObject = title;
-      var bookTitle = bookObject.title;
-      var bookAuthor = bookObject.author;
-      removeBook(this.books, bookTitle, bookAuthor);
-    } else {
-      // Remove book by title and author
-      removeBook(this.books, title, author);
+      author = title.author;
+      title = title.title;
     }
+    // Remove book by title and author
+    this._removeBook(this.books, title, author);
   };
 };
 
-function removeBook(bookArray, title, author) {
+Shelf.prototype._removeBook = function (bookArray, title, author) {
   // Handle different letter cases
   var title = title.toLowerCase();
   var author = author.toLowerCase();
