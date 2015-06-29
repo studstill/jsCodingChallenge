@@ -6,26 +6,23 @@ var Library = function(name) {
   this.name = name;
   this.shelves = [];
   this.addShelf = function(genre) {
-    if (typeof(genre) === 'object') {
+    if (typeof(genre) != 'object') {
       // Handle if Shelf object is passed in as an argument
-      this.shelves.push(genre);
-    } else {
-      this.shelves.push(new Shelf(genre));
+      genre = new Shelf(genre);
     }
+    this.shelves.push(genre);
   };
   this.removeShelf = function(genre) {
     // Handle if a pre-existing Shelf object is passed in as
     // an argument
     if (typeof(genre) === 'object') {
-      var shelfGenreName = genre.genre;
-      removeShelf(this.shelves, shelfGenreName);
-    } else {
-      removeShelf(this.shelves, genre);
+      genre = genre.genre;
     }
+    this._removeShelf(this.shelves, genre);
   };
 };
 
-function removeShelf(shelvesArray, genre) {
+Library.prototype._removeShelf = function(shelvesArray, genre) {
   // Handle different letter cases
   var genre = genre.toLowerCase();
   // Map the shelves array and return the genre of each shelf (lowercased),
@@ -35,7 +32,8 @@ function removeShelf(shelvesArray, genre) {
   }).indexOf(genre);
   // Removed the matched shelf by its index
   shelvesArray.splice(shelfIndex, 1);
-}
+};
+
 
 /*****************************
   Test Code
